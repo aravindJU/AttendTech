@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register Student</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+    body {
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(135deg, #f6d365, #fda085);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .container {
+        background: #fff;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        width: 100%;
+        max-width: 400px;
+    }
+    h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #333;
+    }
+    input[type=text] {
+        width: 100%;
+        padding: 12px;
+        margin: 12px 0;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+    }
+    button {
+        width: 100%;
+        padding: 15px;
+        background: #764ba2;
+        color: #fff;
+        font-weight: 600;
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    button:hover { background: #667eea; }
+    .flash {
+        text-align: center;
+        color: red;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+    a {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        color: #764ba2;
+        text-decoration: none;
+        font-weight: 600;
+    }
+    a:hover { color: #667eea; }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Register Student</h2>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="flash">
+            {% for msg in messages %}
+                {{ msg }}<br>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+
+    <form method="post">
+        <input type="text" name="name" placeholder="Student Name" required>
+        <input type="text" name="roll_no" placeholder="Roll Number" required>
+        <button type="submit">Register & Capture Faces</button>
+    </form>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</div>
+</body>
+</html>

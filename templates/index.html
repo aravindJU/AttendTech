@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attendance System</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+    body {
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: #333;
+    }
+    .container {
+        max-width: 900px;
+        margin: 60px auto;
+        text-align: center;
+    }
+    h1 {
+        color: #fff;
+        font-size: 3em;
+        margin-bottom: 40px;
+        text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+    }
+    .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+    .button {
+        flex: 1 1 200px;
+        background: #fff;
+        color: #764ba2;
+        font-weight: 600;
+        text-decoration: none;
+        padding: 15px 25px;
+        border-radius: 12px;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+    }
+    .button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        background: #f0f0f0;
+    }
+    form button {
+        background: #ff4b5c;
+        color: #fff;
+        border: none;
+        padding: 15px 25px;
+        border-radius: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    form button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+    .flash {
+        color: #fff;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Attendance System</h1>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="flash">
+            {% for msg in messages %}
+                {{ msg }}<br>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+
+    <div class="buttons">
+        <a href="{{ url_for('register') }}" class="button">Register Student</a>
+        <a href="{{ url_for('train') }}" class="button">Train Model</a>
+        <a href="{{ url_for('recognize') }}" class="button">Mark Attendance</a>
+        <a href="{{ url_for('students_page') }}" class="button">View Students</a>
+        <a href="{{ url_for('attendance') }}" class="button">Attendance Log</a>
+    </div>
+
+    <form action="{{ url_for('clear_attendance_route') }}" method="post" style="margin-top:40px;">
+        <button type="submit">Clear Attendance</button>
+    </form>
+</div>
+</body>
+</html>

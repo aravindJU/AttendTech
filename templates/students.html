@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Students</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+    body { font-family: 'Inter', sans-serif; background: #eef2f3; margin: 0; padding: 0; }
+    .container { width: 90%; margin: 50px auto; }
+    h2 { text-align: center; color: #333; margin-bottom: 30px; }
+    table { width: 100%; border-collapse: collapse; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+    th, td { padding: 15px; text-align: left; border-bottom: 1px solid #ddd; }
+    th { background: #667eea; color: #fff; font-weight: 600; }
+    tr:hover { background: #f0f0f0; }
+    button {
+        background: #ff4b5c;
+        color: #fff;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+    button:hover { background: #d32f2f; }
+    a { display: block; text-align: center; margin-top: 30px; text-decoration: none; color: #667eea; font-weight: 600; }
+    a:hover { color: #764ba2; }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Students</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Roll No</th>
+            <th>Action</th>
+        </tr>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.id }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.roll_no }}</td>
+            <td>
+                <form action="{{ url_for('delete_student', student_id=student.id) }}" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</div>
+</body>
+</html>
